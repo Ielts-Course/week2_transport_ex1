@@ -1,88 +1,171 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Stage 3: Fill in the blanks</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 2rem;
-            background-color: #f9f9f9;
-        }
-        h2 {
-            text-align: center;
-        }
-        .sentence-container {
-            background: #fff;
-            padding: 1rem;
-            margin: 1rem auto;
-            max-width: 800px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .sentence {
-            margin-bottom: 1.2rem;
-            font-size: 1.1rem;
-        }
-        select {
-            font-size: 1rem;
-            padding: 0.3rem;
-            margin: 0 0.5rem;
-        }
-        .translation {
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 0.2rem;
-        }
-        #submit {
-            display: block;
-            margin: 2rem auto;
-            padding: 0.5rem 1rem;
-            font-size: 1.1rem;
-            cursor: pointer;
-        }
-        .correct {
-            color: green;
-            font-weight: bold;
-        }
-        .incorrect {
-            color: red;
-            font-weight: bold;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Stage 3: Fill in the blanks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root{
+      --bg:#f9f9f9;
+      --card:#ffffff;
+      --text:#222;
+      --muted:#666;
+      --primary:#0d6efd;
+      --primary-dark:#0b5ed7;
+      --shadow:0 0 10px rgba(0,0,0,0.08);
+      --radius:12px;
+    }
+    *{box-sizing:border-box;}
+    html,body{height:100%;}
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+      padding: 1rem;
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .container{
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .header {
+      justify-content:center; 
+      text-align:center; 
+      display:flex; 
+      align-items:center; 
+      gap:16px; 
+      margin-bottom:12px; 
+      border-bottom:1px solid #eee; 
+      padding-bottom:12px;
+      flex-wrap: wrap;
+    }
+    .header img{height:56px; width:auto;}
+    .titleblock{font-weight:700; line-height:1.2; font-size:1.4em;}
+
+    #instruction{
+      text-align:center; 
+      font-style:italic; 
+      font-size:1rem; 
+      color:#444; 
+      margin:1rem 0;
+    }
+
+    .sentence-container {
+      background: var(--card);
+      padding: 1rem;
+      margin: 1rem auto;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .sentence {
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    select {
+      font-size: 1rem;
+      padding: 0.5rem 0.6rem;
+      margin: 0.2rem 0.3rem;
+      max-width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .translation {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 0.35rem;
+    }
+
+    #submit {
+      display: block;
+      width: 100%;
+      max-width: 420px;
+      margin: 1.5rem auto;
+      padding: 0.9rem 1.4rem;
+      font-size: 1.05rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      background-color: var(--primary);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+    #submit:hover { background-color: var(--primary-dark); }
+
+    #score-report{
+      text-align:center; 
+      font-size:1.1rem; 
+      margin-top:0.5rem;
+      font-weight:600;
+    }
+    #right-answers{
+      max-width:880px; 
+      margin:1rem auto; 
+      font-size:1rem; 
+      line-height:1.6;
+    }
+
+    .correct { color: #1e7e34; font-weight: 700; }
+    .incorrect { color: #dc3545; font-weight: 700; }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px){
+      body{ padding: 0.75rem; }
+      .header{ gap:10px; }
+      .header img{ height:44px; }
+      .titleblock{ font-size:1.2em; }
+      .sentence{ font-size: 1rem; }
+      .sentence-container{ padding: 0.9rem; }
+    }
+    @media (max-width: 480px){
+      body{ padding: 0.6rem; }
+      .header{ flex-direction: column; }
+      .titleblock{ font-size:1.1em; }
+      select{ width: 100%; display: inline-block; }
+      .sentence{ font-size: 0.98rem; }
+      #instruction{ font-size:0.95rem; }
+    }
+
+    footer{ text-align:center; margin-top:24px; color:#666; font-size:13px; }
+  </style>
 </head>
 <body>
 <div class="container">
-  <div class="header" style="justify-content:center; text-align:center; display:flex; align-items:center; gap:16px; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:12px;">
-    <img src="LOGO.png" alt="Logo" style="height:56px; width:auto;" />
-    <div class="titleblock" style="font-weight:700; line-height:1.2; font-size:1.4em;">
+  <div class="header">
+    <img src="LOGO.png" alt="Logo" />
+    <div class="titleblock">
       教育部 - 出国人员培训部
       <small style="display:block; font-weight:500; color:#555; margin-top:4px;">第1周 • 词汇练习</small>
     </div>
-  
-
-  
-
   </div>
 
-    
-    
-  <p id="instruction" style="text-align:center; font-style:italic; font-size:1rem; color:#444; margin:1rem 0;">
+  <p id="instruction">
     Choose the most suitable word to complete each sentence. Clues are provided in Chinese.
   </p>
-<div class="sentence-container" id="exercise"></div>
-    <button id="submit">Submit Answers</button>
-<div id="score-report" style="text-align:center; font-size:1.2rem; margin-top:1rem;"></div>
-<div id="right-answers" style="max-width:800px; margin:1rem auto; font-size:1rem; line-height:1.5;"></div>
 
-    <script>
-  // 1) Sentence templates: put the dropdown where "____" appears.
-  //    Format: [templateWithGap, correctAnswer, zhTranslation]
+  <div class="sentence-container" id="exercise"></div>
+
+  <button id="submit">Submit Answers</button>
+
+  <div id="score-report"></div>
+  <div id="right-answers"></div>
+
+  <script>
   const data = [
     ["The bus was so ____ that I could hardly move.", "cramped", "公交车太拥挤了，我几乎动不了。"],
     ["The subway is usually very ____ in the morning.", "crowded", "地铁在早上通常非常拥挤。"],
-    ["The old train was ____, and cold wind came through the windows.", "draughty", "那列旧火车有穿堂风，冷风一直从窗户吹进来。"],
     ["The metro was ____ during rush hour.", "jam-packed", "地铁在高峰期挤满了人。"],
     ["The old bus looked ____ with torn seats.", "shabby", "那辆旧公交车看起来很破旧，座位都破了。"],
     ["The tram was so ____ that everyone opened the windows.", "stuffy", "有轨电车太闷热了，大家都打开了窗户。"],
@@ -93,17 +176,13 @@
     ["Sitting on the back of a motorbike for two hours was very ____.", "uncomfortable", "坐在摩托车后座两个小时非常不舒服。"]
   ];
 
-  // Build a single choices list for the dropdowns
   const choices = [...new Set(data.map(d => d[1]))];
-
-  // If you want all 11 items, remove .slice(0, 5)
-  const shuffled = [...data].sort(() => Math.random() - 0.5).slice(0, 5);
-
+  const shuffled = [...data].sort(() => Math.random() - 0.5);
   const container = document.getElementById("exercise");
 
   shuffled.forEach(([template, correct, zh]) => {
-    const parts = template.split("____"); // [before, after]
-    // Build the options (correct + 3 random distractors)
+    const parts = template.split("____");
+
     const opts = [correct, ...choices.filter(c => c !== correct)
       .sort(() => Math.random() - 0.5)
       .slice(0, 3)]
@@ -113,7 +192,7 @@
     wrapper.className = "sentence";
     wrapper.innerHTML = `
       ${parts[0] || ""}
-      <select data-answer="${correct}" data-template="${template}">
+      <select aria-label="Choose the best word" data-answer="${correct}" data-template="${template}">
         <option value="">--choose--</option>
         ${opts.map(o => `<option value="${o}">${o}</option>`).join("")}
       </select>
@@ -134,9 +213,8 @@
       const answer = sel.dataset.answer;
       const ok = user === answer;
       sel.className = ok ? "correct" : "incorrect";
-      if (ok) {
-        correctCount++;
-      } else {
+      if (ok) correctCount++;
+      else {
         const full = sel.dataset.template.replace("____", answer);
         missed.push(`正确句子：${full}`);
       }
@@ -153,11 +231,7 @@
   };
 </script>
 
-
-  <footer style="text-align:center; margin-top:24px; color:#666; font-size:13px;">
-    ©2025 Dr. Carlos Cardenas • 教育管理学博士
-  </footer>
+  <footer>©2025 Dr. Carlos Cardenas • 教育管理学博士</footer>
 </div>
-
 </body>
 </html>
