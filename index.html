@@ -139,6 +139,49 @@
     }
 
     footer{ text-align:center; margin-top:24px; color:#666; font-size:13px; }
+  /* Numbering + dividers without changing JS */
+.sentence-container { counter-reset: item; }
+
+.sentence {
+  position: relative;
+  padding: 14px 12px 12px 48px;   /* space for the number badge */
+  margin: 0;
+  border-top: 1px solid #e9e9e9;  /* subtle divider */
+}
+
+.sentence:first-child { border-top: 0; }
+
+/* Circular number badge */
+.sentence::before {
+  counter-increment: item;
+  content: counter(item);
+  position: absolute;
+  left: 8px;
+  top: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: #eef4ff;
+  color: #0d6efd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* Keep the Chinese hint visually secondary */
+.sentence .translation {
+  margin-top: 6px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Mobile tweaks for clarity */
+@media (max-width: 600px) {
+  .sentence { padding-left: 52px; }
+  select { width: 100%; }          /* dropdown on its own line if needed */
+}
   </style>
 </head>
 <body>
